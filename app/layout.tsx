@@ -1,11 +1,12 @@
-import type React from "react"
+import PlayerWrapper from "@/components/PlayerWrapper"
+import { Sidebar } from "@/components/sidebar"
+import { ThemeProvider } from "@/components/theme-provider"
+import { PlayerProvider } from "@/contexts/PlayerContext"
+import { AudioProvider } from "@/lib/audio-context"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
+import type React from "react"
 import "./globals.css"
-import { Sidebar } from "@/components/sidebar"
-import { Player } from "@/components/player"
-import { ThemeProvider } from "@/components/theme-provider"
-import { AudioProvider } from "@/lib/audio-context"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -14,6 +15,8 @@ export const metadata: Metadata = {
   description: "A Spotify clone built with Next.js and Tailwind CSS",
     generator: 'v0.dev'
 }
+
+
 
 export default function RootLayout({
   children,
@@ -25,13 +28,15 @@ export default function RootLayout({
       <body className={`${inter.className} bg-black text-white overflow-hidden h-screen`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <AudioProvider>
-            <div className="flex h-screen flex-col">
-              <div className="flex flex-1 overflow-hidden">
-                <Sidebar />
-                <main className="flex-1 overflow-y-auto">{children}</main>
+            <PlayerProvider>
+              <div className="flex h-screen flex-col">
+                <div className="flex flex-1 overflow-hidden">
+                  <Sidebar />
+                  <main className="flex-1 overflow-y-auto">{children}</main>
+                </div>
+                <PlayerWrapper />
               </div>
-              <Player />
-            </div>
+            </PlayerProvider>
           </AudioProvider>
         </ThemeProvider>
       </body>
