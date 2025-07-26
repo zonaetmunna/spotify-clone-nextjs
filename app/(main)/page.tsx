@@ -1,11 +1,18 @@
-import { FeaturedPlaylists } from '@/components/featured-playlists';
-import { MadeForYou } from '@/components/made-for-you';
-import { NewReleases } from '@/components/new-releases';
-import { PopularArtists } from '@/components/popular-artists';
-import { RecentlyPlayed } from '@/components/recently-played';
-import { SearchSkeleton } from '@/components/search-skeleton';
-import { albums, artists, playlists, songs } from '@/lib/dummy-data';
-import { Suspense } from 'react';
+import { FeaturedPlaylists } from "@/components/featured-playlists";
+import { MadeForYou } from "@/components/made-for-you";
+import { NewReleases } from "@/components/new-releases";
+import { PopularArtists } from "@/components/popular-artists";
+import { RecentlyPlayed } from "@/components/recently-played";
+import { SearchSkeleton } from "@/components/search-skeleton";
+import {
+  albums,
+  Artist,
+  artists,
+  madeForYou,
+  playlists,
+  sampleTracks,
+} from "@/lib/data";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
@@ -16,7 +23,7 @@ export default function Home() {
         </Suspense>
 
         <Suspense fallback={<SearchSkeleton />}>
-          <RecentlyPlayed songs={songs.slice(0, 6)} />
+          <RecentlyPlayed songs={sampleTracks.slice(0, 6)} />
         </Suspense>
 
         <Suspense fallback={<SearchSkeleton />}>
@@ -24,13 +31,13 @@ export default function Home() {
         </Suspense>
 
         <Suspense fallback={<SearchSkeleton />}>
-          <MadeForYou songs={songs.slice(6, 12)} />
+          <MadeForYou songs={madeForYou} />
         </Suspense>
 
         <Suspense fallback={<SearchSkeleton />}>
-          <PopularArtists artists={artists.map(artist => artist.name)} />
+          <PopularArtists artists={artists as unknown as Artist[]} />{" "}
         </Suspense>
       </div>
     </div>
   );
-} 
+}

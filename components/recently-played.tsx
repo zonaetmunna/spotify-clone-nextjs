@@ -1,4 +1,4 @@
-import { Song } from "@/lib/dummy-data";
+import { Song } from "@/lib/data";
 import Link from "next/link";
 import { SongCard } from "./SongCard";
 
@@ -12,7 +12,7 @@ export function RecentlyPlayed({ songs }: RecentlyPlayedProps) {
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-2xl font-bold">Recently Played</h2>
         <Link
-          href="/search?category=songs"
+          href="/recently-played"
           className="text-sm text-gray-400 hover:text-white transition"
         >
           See all

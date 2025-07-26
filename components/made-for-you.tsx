@@ -1,9 +1,9 @@
-import { Song } from '@/lib/dummy-data';
+import { Items } from '@/lib/data';
 import Link from 'next/link';
-import SongCard from './SongCard';
+import { SongCard } from './SongCard';
 
 interface MadeForYouProps {
-  songs: Song[];
+  songs: Items[];
 }
 
 export function MadeForYou({ songs }: MadeForYouProps) {
@@ -20,7 +20,7 @@ export function MadeForYou({ songs }: MadeForYouProps) {
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
         {songs.map((song) => (
-          <SongCard key={song.id} song={song} />
+          <SongCard key={song.id} showPlayButton={false} song={song} />
         ))}
       </div>
     </section>

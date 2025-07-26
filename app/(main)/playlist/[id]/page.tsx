@@ -1,5 +1,5 @@
 import { SongCard } from "@/components/SongCard";
-import { playlists } from "@/lib/dummy-data";
+import { playlists } from "@/lib/data";
 import { Play } from "lucide-react";
 import { notFound } from "next/navigation";
 
@@ -22,7 +22,7 @@ export default async function PlaylistPage({ params }: PlaylistPageProps) {
       <div className="flex flex-col md:flex-row gap-6 mb-8">
         <div className="relative aspect-square w-full md:w-64 overflow-hidden rounded-md">
           <img
-            src={playlist.coverUrl}
+            src={playlist.cover}
             alt={playlist.name}
             className="object-cover w-full h-full"
           />
@@ -31,7 +31,7 @@ export default async function PlaylistPage({ params }: PlaylistPageProps) {
           <h1 className="text-4xl font-bold mb-2">{playlist.name}</h1>
           <p className="text-neutral-400 mb-4">{playlist.description}</p>
           <div className="flex items-center gap-2 text-sm text-neutral-400">
-            <span>{playlist.createdBy}</span>
+            <span>{playlist.creator}</span>
             <span>•</span>
             <span>{playlist.songs.length} songs</span>
           </div>

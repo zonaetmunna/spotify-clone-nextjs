@@ -1,5 +1,6 @@
-import { Album } from '@/lib/dummy-data';
+import { Album } from '@/lib/data';
 import { Play } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 interface NewReleasesProps {
@@ -26,9 +27,12 @@ export function NewReleases({ albums }: NewReleasesProps) {
             className="group relative bg-neutral-800/50 hover:bg-neutral-800/70 rounded-md p-3 transition"
           >
             <div className="relative aspect-square w-full overflow-hidden rounded-md">
-              <img
-                src={album.coverUrl}
+              <Image
+                src={album.cover}
                 alt={album.name}
+                width={200}
+                height={200}
+                priority
                 className="object-cover w-full h-full"
               />
               <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition">

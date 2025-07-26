@@ -1,6 +1,6 @@
 'use client';
 
-import { Song } from '@/lib/dummy-data';
+import { Song } from '@/lib/data';
 import { createContext, ReactNode, useCallback, useContext, useState } from 'react';
 
 interface PlayerContextType {

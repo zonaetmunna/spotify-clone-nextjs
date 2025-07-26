@@ -1,11 +1,12 @@
 'use client';
 
 import { usePlayer } from '@/contexts/PlayerContext';
-import { Song } from '@/lib/dummy-data';
+import { Items, Song } from '@/lib/data';
 import { Pause, Play } from 'lucide-react';
+import Image from 'next/image';
 
 interface SongCardProps {
-  song: Song;
+  song: Song |Items;
   showPlayButton?: boolean;
 }
 
@@ -15,7 +16,7 @@ export function SongCard({ song, showPlayButton = true }: SongCardProps) {
 
   const handlePlay = (e: React.MouseEvent) => {
     e.preventDefault();
-    playSong(song);
+    playSong(song as Song);
   };
 
   return (
@@ -24,14 +25,16 @@ export function SongCard({ song, showPlayButton = true }: SongCardProps) {
       onClick={handlePlay}
     >
       <div className="relative aspect-square w-full overflow-hidden rounded-md">
-        <img
-          src={song.coverUrl}
-          alt={song.title}
+        <Image
+          src={song.cover}
+          alt={song.name}
+          width={200}
+          height={200}
           className="object-cover w-full h-full"
         />
         {showPlayButton && (
           <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition">
-            <button className="bg-white rounded-full p-3 hover:scale-105 transition">
+            <button className="bg-background rounded-full p-3 hover:scale-105 transition">
               {isCurrentSong && isPlaying ? (
                 <Pause size={20} />
               ) : (
@@ -42,8 +45,7 @@ export function SongCard({ song, showPlayButton = true }: SongCardProps) {
         )}
       </div>
       <div className="mt-3">
-        <h3 className="font-medium text-white truncate">{song.title}</h3>
-        <p className="text-sm text-neutral-400 truncate">{song.artist}</p>
+        <h3 className="font-medium text-white truncate">{song.name}</h3>
       </div>
     </div>
   );

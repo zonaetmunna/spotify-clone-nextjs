@@ -1,7 +1,7 @@
-import { SongCard } from '@/components/SongCard';
-import { albums } from '@/lib/dummy-data';
-import { Play } from 'lucide-react';
-import { notFound } from 'next/navigation';
+import { SongCard } from "@/components/SongCard";
+import { albums } from "@/lib/data";
+import { Play } from "lucide-react";
+import { notFound } from "next/navigation";
 
 interface AlbumPageProps {
   params: {
@@ -10,7 +10,7 @@ interface AlbumPageProps {
 }
 
 export default function AlbumPage({ params }: AlbumPageProps) {
-  const album = albums.find(a => a.id === params.id);
+  const album = albums.find((a) => a.id === params.id);
 
   if (!album) {
     notFound();
@@ -21,7 +21,7 @@ export default function AlbumPage({ params }: AlbumPageProps) {
       <div className="flex flex-col md:flex-row gap-6 mb-8">
         <div className="relative aspect-square w-full md:w-64 overflow-hidden rounded-md">
           <img
-            src={album.coverUrl}
+            src={album.cover}
             alt={album.name}
             className="object-cover w-full h-full"
           />
@@ -30,7 +30,7 @@ export default function AlbumPage({ params }: AlbumPageProps) {
           <h1 className="text-4xl font-bold mb-2">{album.name}</h1>
           <p className="text-neutral-400 mb-4">{album.artist}</p>
           <div className="flex items-center gap-2 text-sm text-neutral-400">
-            <span>{album.releaseDate}</span>
+            <span>{album?.releaseDate}</span>
             <span>•</span>
             <span>{album.songs.length} songs</span>
           </div>
@@ -51,4 +51,4 @@ export default function AlbumPage({ params }: AlbumPageProps) {
       </div>
     </div>
   );
-} 
+}

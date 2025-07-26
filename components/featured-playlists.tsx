@@ -1,5 +1,6 @@
-import { Playlist } from '@/lib/dummy-data';
+import { Playlist } from '@/lib/data';
 import { Play } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 interface FeaturedPlaylistsProps {
@@ -12,7 +13,7 @@ export function FeaturedPlaylists({ playlists }: FeaturedPlaylistsProps) {
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-2xl font-bold">Featured Playlists</h2>
         <Link 
-          href="/search?category=playlists" 
+          href="/playlist" 
           className="text-sm text-gray-400 hover:text-white transition"
         >
           See all
@@ -26,9 +27,12 @@ export function FeaturedPlaylists({ playlists }: FeaturedPlaylistsProps) {
             className="group relative bg-neutral-800/50 hover:bg-neutral-800/70 rounded-md p-3 transition"
           >
             <div className="relative aspect-square w-full overflow-hidden rounded-md">
-              <img
-                src={playlist.coverUrl}
+              <Image
+                src={playlist?.cover}
                 alt={playlist.name}
+                width={200}
+                height={200}
+                priority
                 className="object-cover w-full h-full"
               />
               <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition">
