@@ -1,7 +1,7 @@
-import { SongCard } from '@/components/SongCard';
-import { playlists } from '@/lib/dummy-data';
-import { Play } from 'lucide-react';
-import { notFound } from 'next/navigation';
+import { SongCard } from "@/components/SongCard";
+import { playlists } from "@/lib/dummy-data";
+import { Play } from "lucide-react";
+import { notFound } from "next/navigation";
 
 interface PlaylistPageProps {
   params: {
@@ -9,8 +9,9 @@ interface PlaylistPageProps {
   };
 }
 
-export default function PlaylistPage({ params }: PlaylistPageProps) {
-  const playlist = playlists.find(p => p.id === params.id);
+export default async function PlaylistPage({ params }: PlaylistPageProps) {
+  const playlistId = await params.id;
+  const playlist = playlists.find((p) => p.id === params.id);
 
   if (!playlist) {
     notFound();
@@ -51,4 +52,4 @@ export default function PlaylistPage({ params }: PlaylistPageProps) {
       </div>
     </div>
   );
-} 
+}
